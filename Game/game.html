@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanye Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #282c34;
+        }
+        #gameCanvas {
+            display: block;
+            margin: 0 auto;
+            background-color: black;
+            border: 2px solid white;
+        }
+        #score {
+            color: white;
+            font-size: 24px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        #highscore {
+            color: white;
+            font-size: 24px;
+            position: absolute;
+            top: 40px;
+            left: 20px;
+        }
+        #gameOver {
+            color: white;
+            font-size: 48px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+        #playagain {
+            color: green;
+            font-size: 48px;
+            position: absolute;
+            top: 60%;
+            left: 60%;
+            transform: translate(-60%, -60%);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="score">Score: 0</div>
+    <div id="highscore">Highscore: 0</div>
+    <div id="gameOver">ALFRED PENNINGTON YOU ARE SO SHIT!</div>
+    <div id="playagain">Space To Play Again</div>
+    <canvas id="gameCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Set the canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Game Variables
+        let shooter = { x: canvas.width / 2, y: canvas.height - 50, width: 50, height: 50, speed: 7 };
+        let bullets = [];
+        let targets = [];
+        let score = 0;
+        let highscore = 0;
+        let isGameOver = false;
+
+        // Shooter Movement
+        let moveLeft = false;
+        let moveRight = false;
+
+        // Load the image for the shooter
+        const shooterImage = new Image();
+        shooterImage.src = 'Kanye.webp'; // Replace with the path to your image file
+
+        // Load the image for the target
+        const targetImage = new Image();
+        targetImage.src = 'TayTay.jpg'; // Replace with the path to your image file
+
+        // Handle key events for shooter movement and shooting
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") {
+                moveLeft = true;
+            }
+            if (e.key === "ArrowRight") {
+                moveRight = true;
+            }
+            if (e.key === " " && !isGameOver) { // Use spacebar for firing bullets
+                fireBullet();
+            }
+            if (e.key === " " && isGameOver) { // Restart game when space is pressed after game over
+                resetGame();
+            }
+        });
+
+        document.addEventListener("keyup", (e) => {
+            if (e.key === "ArrowLeft") {
+                moveLeft = false;
+            }
+            if (e.key === "ArrowRight") {
+                moveRight = false;
+            }
+        });
+
+        // Bullet object
+        function fireBullet() {
+            if (isGameOver) return; // Don't fire bullets after game over
+            const bullet = { x: shooter.x + shooter.width / 2 - 5, y: shooter.y, width: 15, height: 10, speed: 5 };
+            bullets.push(bullet);
+        }
+
+        // Target object
+        function createTarget() {
+            const targetWidth = 30;
+            const targetHeight = 30;
+            const x = Math.random() * (canvas.width - targetWidth);
+            targets.push({ x, y: -targetHeight, width: targetWidth, height: targetHeight, speed: Math.random() * 2 + 2 });
+        }
+
+        // Check collision between bullet and target
+        function checkCollision(bullet, target) {
+            return (
+                bullet.x < target.x + target.width &&
+                bullet.x + bullet.width > target.x &&
+                bullet.y < target.y + target.height &&
+                bullet.y + bullet.height > target.y
+            );
+        }
+
+        // Check collision between shooter and target (game over condition)
+        function checkShooterCollision(target) {
+            return (
+                shooter.x < target.x + target.width &&
+                shooter.x + shooter.width > target.x &&
+                shooter.y < target.y + target.height &&
+                shooter.y + shooter.height > target.y
+            );
+        }
+
+        // Update the game state
+        function update() {
+            if (isGameOver) return; // Stop game if it's over
+
+            // Move shooter
+            if (moveLeft && shooter.x > 0) {
+                shooter.x -= shooter.speed;
+            }
+            if (moveRight && shooter.x + shooter.width < canvas.width) {
+                shooter.x += shooter.speed;
+            }
+
+            // Move bullets
+            bullets.forEach((bullet, index) => {
+                bullet.y -= bullet.speed;
+                if (bullet.y < 0) {
+                    bullets.splice(index, 1); // Remove bullets that are off-screen
+                }
+            });
+
+            // Move targets and check for collisions
+            targets.forEach((target, targetIndex) => {
+                target.y += target.speed;
+                if (target.y > canvas.height) {
+                    targets.splice(targetIndex, 1); // Remove targets that fall off screen
+                }
+
+                // Check if the target hits the shooter
+                if (checkShooterCollision(target)) {
+                    isGameOver = true;
+                    document.getElementById("gameOver").style.display = "block"; // Show game over message
+                    document.getElementById("playagain").style.display = "block";
+                }
+
+                // Check if a bullet hits a target
+                bullets.forEach((bullet, bulletIndex) => {
+                    if (checkCollision(bullet, target)) {
+                        score += 10;
+                        targets.splice(targetIndex, 1); // Remove hit target
+                        bullets.splice(bulletIndex, 1); // Remove bullet that hit the target
+                    }
+                });
+            });
+
+            // Randomly create new targets every 50ms
+            if (Math.random() < 0.02) {
+                createTarget();
+            }
+        }
+
+        // Draw everything on the canvas
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw shooter image
+            ctx.drawImage(shooterImage, shooter.x, shooter.y, shooter.width, shooter.height);
+
+            // Draw bullets
+            ctx.fillStyle = "white";
+            bullets.forEach((bullet) => {
+                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+            });
+
+            // Draw targets using the image
+            targets.forEach((target) => {
+                ctx.drawImage(targetImage, target.x, target.y, target.width, target.height);
+            });
+
+            // Draw score
+            document.getElementById("score").innerText = "Score: " + score;
+
+            // Draw highscore
+            document.getElementById("highscore").innerText = "Highscore: " + highscore;
+        }
+
+        // Game loop
+        function gameLoop() {
+            if (score > highscore){
+                highscore = score;
+            }
+            update();
+            draw();
+            if (!isGameOver) {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        // Reset game
+        function resetGame() {
+            score = 0;
+            bullets = [];
+            targets = [];
+            shooter.x = canvas.width / 2;
+            shooter.y = canvas.height - 50;
+            isGameOver = false;
+            document.getElementById("gameOver").style.display = "none";
+            document.getElementById("playagain").style.display = "none";
+            gameLoop(); // Start the game loop again
+        }
+
+        // Start the game loop
+        shooterImage.onload = () => {
+            targetImage.onload = () => {
+                gameLoop();
+            };
+        };
+    </script>
+</body>
+</html>

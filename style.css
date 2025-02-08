@@ -1,0 +1,176 @@
+/* General Body Styles */
+body {
+    background-color: lightblue;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* To avoid scrollbars during the "break" effect */
+}
+
+/* Heading Style */
+#heading {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#heading:hover {
+    color: #007BFF;
+}
+
+/* Unordered List Style */
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+li {
+    display: inline-block;
+    margin: 10px;
+}
+
+a {
+    font-size: 20px;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    background-color: #007BFF;
+    color: white;
+    transform: translateY(-5px);
+}
+
+a:active {
+    transform: translateY(2px);
+}
+
+/* Image Style */
+img {
+    display: block;
+    margin: 30px auto;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Style */
+#footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 14px;
+    color: #555;
+}
+
+#footer p {
+    margin: 5px;
+}
+
+/* Button Styling */
+#safeButton {
+    display: block;
+    width: 300px;
+    margin: 40px auto;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#safeButton:hover {
+    background-color: #45a049;
+}
+
+/* "Virus" Break Effect */
+.broken-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: none;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.broken-screen div {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    animation: break 0.5s forwards;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes break {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5) rotate(360deg);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(2) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Static effect on body */
+@keyframes static {
+    0% {
+        background: #000;
+    }
+    50% {
+        background: #222;
+    }
+    100% {
+        background: #000;
+    }
+}
+
+/* Error Messages */
+.error-message {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    animation: glitch 1s infinite;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red;
+        transform: translateX(-10px);
+    }
+    50% {
+        text-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red;
+        transform: translateX(10px);
+    }
+    100% {
+        text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red;
+        transform: translateX(-10px);
+    }
+}
+
+
