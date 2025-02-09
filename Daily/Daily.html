@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily 10 Questions Game</title>
+    <link rel="stylesheet" href="Daily.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Daily 10 Questions Game</h1>
+        <p>The quicker you guess the answer, the more points you get (first question = 10 points, second question = 9 points, etc.)</p>
+        <p><strong>Today's category:</strong> Films</p>
+        
+        <!-- Game Status and Image -->
+        <div id="gameStatus">
+            <p id="question">Get ready to start!</p>
+            <img id="statusImage" src="question.png" alt="Game Status" />
+        </div>
+        
+        <form id="addGuessForm">
+            <input type="text" id="Guess" placeholder="Your Guess" required>
+            <button type="submit">Enter</button>
+        </form>
+
+        <p id="resultMessage"></p>
+    </div>
+    
+    <script src="Daily.js"></script>
+</body>
+</html>
