@@ -48,11 +48,19 @@
             transform: translate(-60%, -60%);
             display: none;
         }
+        #goldinfo {
+            color: gold;
+            font-size: 24px;
+            position: absolute;
+            top: 60px;
+            left: 20px;
+        }
     </style>
 </head>
 <body>
     <div id="score">Score: 0</div>
     <div id="highscore">Highscore: 0</div>
+    <div id="goldinfo">Reach highscore 1000 to unlock golden Kanye</div>
     <div id="gameOver">ALFRED PENNINGTON YOU ARE SO SHIT!</div>
     <div id="playagain">Space To Play Again</div>
     <canvas id="gameCanvas"></canvas>
@@ -78,8 +86,11 @@
         let moveRight = false;
 
         // Load the image for the shooter
-        const shooterImage = new Image();
-        shooterImage.src = 'Kanye.webp'; // Replace with the path to your image file
+        let shooterImageSrc = 'Kanye.webp'; // Default shooter image
+        const goldShooterImageSrc = 'GoldKanye.gif'; // Image when highscore >= 10
+        var shooterImage = new Image();
+        shooterImage.src = shooterImageSrc; // Default shooter image
+
 
         // Load the image for the target
         const targetImage = new Image();
@@ -115,6 +126,8 @@
             if (isGameOver) return; // Don't fire bullets after game over
             const bullet = { x: shooter.x + shooter.width / 2 - 5, y: shooter.y, width: 15, height: 10, speed: 5 };
             bullets.push(bullet);
+            const Scar = new Audio('Scar.mp3');
+            Scar.play();
         }
 
         // Target object
@@ -193,6 +206,13 @@
             if (Math.random() < 0.02) {
                 createTarget();
             }
+            if (highscore >= 1000 && shooterImageSrc !== goldShooterImageSrc) {
+                shooterImageSrc = goldShooterImageSrc; // Change to gold shooter image
+                shooterImage = new Image(); // Create a new image object
+                shooterImage.src = shooterImageSrc; // Update the source to the gold image
+                const Aldi = new Audio('Aldi.mp3');
+                Aldi.play();
+    }
         }
 
         // Draw everything on the canvas
@@ -254,3 +274,4 @@
     </script>
 </body>
 </html>
+
