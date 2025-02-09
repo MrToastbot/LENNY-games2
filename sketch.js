@@ -1,3 +1,11 @@
+function change_heading() {
+    // Generate a random color
+    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    
+    // Change the heading color to the random color
+    document.getElementById('heading').style.color = randomColor;
+}
+
 function triggerVirus(){
     // Store all error message elements
     let errorMessages = [];
