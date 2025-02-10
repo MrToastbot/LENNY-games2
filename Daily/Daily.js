@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const answer = "THE DARK KNIGHT";
-    const questions = ["This film is part of a franchise", "This film is a comic book film", "This films runtime is 2h 32m", "This film is ranked in the top 25 films on imdb", "This film won two Oscars", "The lead actor in this film is Welsh", "This film released in 2008", "This film was directed by Christiphor Nolan", "This films vilan is played by Heath Ledger", "This film is a batman film"];
+    const answer = "PANAMA";
+    const questions = ["This country is a constitutional democracy", "This country's biggest export is copper ore", "This country was founded in 1903", "This country's national language is Spanish",  "This country has only qualified for the FIFA world cup once", "This country is located in the northern hemisphere", "This country has a population of 4.4 million", "This country is located in North America",  "This country's flags colours are red, white and blue",  "The name of this country is in it's capital city"];
     let points = 10;
     let currentQuestionIndex = 0;
 
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (points > 0 && currentQuestionIndex < questions.length) {
             if (guess.toUpperCase() === answer) {
                 resultMessage.textContent = "Correct! Well done. You got " + points +" points. New game available whenever I can be asked to make it.";
-                statusImage.src = "poster.webp"; // Change this image based on correct answer
+                statusImage.src = "poster.png"; // Change this image based on correct answer
             } else {
                 resultMessage.textContent = "Incorrect";
                 points -= 1;
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (points === 0) {
                     resultMessage.textContent = "Game Over! The answer was " + answer + ". New game available whenever I can be asked to make it";
-                    statusImage.src = "poster.webp"; // Change this image for game over
+                    statusImage.src = "poster.png"; // Change this image for game over
                 }
             }  
         }
