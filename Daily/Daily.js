@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const answer = "PANAMA";
-    const questions = ["This country is a constitutional democracy", "This country's biggest export is copper ore", "This country was founded in 1903", "This country's national language is Spanish",  "This country has only qualified for the FIFA world cup once", "This country is located in the northern hemisphere", "This country has a population of 4.4 million", "This country is located in North America",  "This country's flags colours are red, white and blue",  "The name of this country is in it's capital city"];
+    const answer = "UNDISCLOSED DESIRES";
+    const questions = ["This song has more than one word in it", "This top comment on this songs music video is: That bassline crunch", "This songs title is 2 words long", "This song is from the album The ResistancThis songs b-sides is Remixes",  "This song peaked at number 49 in the charts", "This song has a music video", "This country has a population of 4.4 millThis song is from their 5th album", "This song is 3 mins 56 seconds long",  "This songs initials are U.S",  "The first word in the title of this song is Undisclosed"];
     let points = 10;
     let currentQuestionIndex = 0;
 
