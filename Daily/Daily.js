@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (points > 0 && currentQuestionIndex < questions.length) {
             if (guess.toUpperCase() === answer) {
                 resultMessage.textContent = "Correct! Well done. You got " + points +" points. New game available whenever I can be asked to make it.";
-                statusImage.src = "poster.png"; // Change this image based on correct answer
+                statusImage.src = "poster.jpeg"; // Change this image based on correct answer
             } else {
                 resultMessage.textContent = "Incorrect";
                 points -= 1;
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (points === 0) {
                     resultMessage.textContent = "Game Over! The answer was " + answer + ". New game available whenever I can be asked to make it";
-                    statusImage.src = "poster.png"; // Change this image for game over
+                    statusImage.src = "poster.jpeg"; // Change this image for game over
                 }
             }  
         }
