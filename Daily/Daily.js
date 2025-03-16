@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const answer = "BAHRAIN";
-    const questions = ["This country is not landlocked", "This country is in the northern hemisphere", "This countrys flag is comprised of 2 colours", "This country is in Asia",  "This countrys national dis is Chicken Machboos", "This countrys langauge is Arabic", "This countrys flad contains the colour white", "This countrys population is 1,701,575",  "This countrys size is 765 km²",  "This countrys capital is Manama"];
+    const questions = ["This country is not landlocked", "This country is in the northern hemisphere", "This countrys flag is comprised of 2 colours", "This country is in Asia",  "This countrys national dish is Chicken Machboos", "This countrys langauge is Arabic", "This countrys flad contains the colour white", "This countrys population is 1,701,575",  "This countrys size is 765 km²",  "This countrys capital is Manama"];
     let points = 10;
     let currentQuestionIndex = 0;
 
