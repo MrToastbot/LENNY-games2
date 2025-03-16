@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const answer = "UNDISCLOSED DESIRES";
-    const questions = ["This song has more than one word in it", "This top comment on this songs music video is: That bassline crunch", "This songs title is 2 words long", "This song is from the album The ResistancThis songs b-sides is Remixes",  "This song peaked at number 49 in the charts", "This song has a music video", "This country has a population of 4.4 millThis song is from their 5th album", "This song is 3 mins 56 seconds long",  "This songs initials are U.S",  "The first word in the title of this song is Undisclosed"];
+    const answer = "BAHRAIN";
+    const questions = ["This country is not landlocked", "This country is in the northern hemisphere", "This countrys flag is comprised of 2 colours", "This country is in Asia",  "This countrys national dis is Chicken Machboos", "This countrys langauge is Arabic", "This countrys flad contains the colour white", "This countrys population is 1,701,575",  "This countrys size is 765 km²",  "This countrys capital is Manama"];
     let points = 10;
     let currentQuestionIndex = 0;
 
