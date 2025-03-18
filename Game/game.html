@@ -130,12 +130,12 @@
             Scar.play();
         }
 
-        // Target object
-    function createTarget() {
-        const targetWidth = 60;
-        const targetHeight = 60;
-        const x = Math.random() * (canvas.width - targetWidth);
-    }
+        function createTarget() {
+            const targetWidth = 30;
+            const targetHeight = 30;
+            const x = Math.random() * (canvas.width - targetWidth);
+            targets.push({ x, y: -targetHeight, width: targetWidth, height: targetHeight, speed: Math.random() * 2 + 2 });
+        }
 
 // In collision detection, you can have special behavior for boss targets.
 
