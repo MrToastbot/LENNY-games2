@@ -182,7 +182,7 @@
 
             // Move targets and check for collisions
             targets.forEach((target, targetIndex) => {
-                target.y += target.speed;
+                target.y += target.speed + 25;
                 if (target.y > canvas.height) {
                     targets.splice(targetIndex, 1); // Remove targets that fall off screen
                 }
