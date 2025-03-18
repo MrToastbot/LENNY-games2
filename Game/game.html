@@ -132,11 +132,9 @@
 
         // Target object
     function createTarget() {
-        const targetWidth = Math.random() * (60 - 20) + 20;
-        const targetHeight = Math.random() * (60 - 20) + 20;
+        const targetWidth = 60;
+        const targetHeight = 60;
         const x = Math.random() * (canvas.width - targetWidth);
-        const type = Math.random() < 0.1 ? 'boss' : 'regular'; // 10% chance of a boss target
-        targets.push({ x, y: -targetHeight, width: targetWidth, height: targetHeight, speed: Math.random() * 2 + 2, type });
     }
 
 // In collision detection, you can have special behavior for boss targets.
