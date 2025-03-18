@@ -131,12 +131,16 @@
         }
 
         // Target object
-        function createTarget() {
-            const targetWidth = 30;
-            const targetHeight = 30;
-            const x = Math.random() * (canvas.width - targetWidth);
-            targets.push({ x, y: -targetHeight, width: targetWidth, height: targetHeight, speed: Math.random() * 2 + 2 });
-        }
+    function createTarget() {
+        const targetWidth = Math.random() * (60 - 20) + 20;
+        const targetHeight = Math.random() * (60 - 20) + 20;
+        const x = Math.random() * (canvas.width - targetWidth);
+        const type = Math.random() < 0.1 ? 'boss' : 'regular'; // 10% chance of a boss target
+        targets.push({ x, y: -targetHeight, width: targetWidth, height: targetHeight, speed: Math.random() * 2 + 2, type });
+    }
+
+// In collision detection, you can have special behavior for boss targets.
+
 
         // Check collision between bullet and target
         function checkCollision(bullet, target) {
